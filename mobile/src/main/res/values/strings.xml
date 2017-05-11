@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cardio Rescue</string>
+
+    <string name="drawer_item_first">Profile</string>
+    <string name="drawer_item_second">Emergency Conact</string>
+    <string name="drawer_item_third">Statistics</string>
+    <string name="drawer_item_fourth">How it works</string>
+    <string name="drawer_item_fifth">About Us</string>
+</resources>
