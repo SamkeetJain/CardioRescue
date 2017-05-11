@@ -62,7 +62,6 @@ public class GPSService extends Service {
 
             //TODO: Push location to Database
 //            if(!sharedPreferences.getString(Constants.ISLOGIN_PREF,"null").equals("null")){
-                pushLocationToDatabase();
                 Toast.makeText(getBaseContext(),"Lat: "+String.valueOf(lat)+"\nLong: "+String.valueOf(lon),Toast.LENGTH_SHORT).show();
 
 //            }
@@ -106,8 +105,6 @@ public class GPSService extends Service {
     public void onCreate() {
         Log.e(TAG, "onCreate");
         Toast.makeText(getBaseContext(),"Location enabled",Toast.LENGTH_SHORT).show();
-        sharedPreferences=getSharedPreferences(Constants.sharedPreferencs,MODE_PRIVATE);
-        editor=sharedPreferences.edit();
         initializeLocationManager();
         try {
             mLocationManager.requestLocationUpdates(
@@ -159,42 +156,5 @@ public class GPSService extends Service {
         if (mLocationManager == null) {
             mLocationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         }
-    }
-
-    public void pushLocationToDatabase(){
-
-
-                //Creating a string request
-        StringRequest req = new StringRequest(Request.Method.POST, Constants.putLocURL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //dismissing the progress dialog
-                        //if the server returned the string success
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                //adding parameters to post request as we need to send firebase id and email
-                params.put("email", sharedPreferences.getString(Constants.EMAIL_PREF,"null"));
-                params.put("lat",String.valueOf(lat));
-                params.put("lon",String.valueOf(lon));
-
-                //params.put("email", null);
-                return params;
-            }
-        };
-
-        //Adding the request to the queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(req);
     }
 }

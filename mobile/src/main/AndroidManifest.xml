@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <application
         android:allowBackup="true"
@@ -14,21 +14,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.MainActivity" />
-        <activity android:name=".UI.ProfileInfo" />
-        <activity android:name=".UI.EmergencyContacts" />
-        <activity android:name=".UI.AboutUs" />
-        <activity android:name=".UI.HowItWorks" />
-        <activity android:name=".UI.Statistics" />
-
-        <service android:name=".UI.Srvices"></service>
-
-        <service android:name=".HeartSensor.DataLayerListenerService" >
-            <intent-filter>
-                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
-            </intent-filter>
-        </service>
-
         <activity android:name=".UI.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,17 +22,18 @@
             </intent-filter>
         </activity>
 
+        <service android:name=".HeartSensor.DataLayerListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
         <service
             android:name=".GPS.GPSService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".UI.Alert" />
-        <activity android:name=".UI.AddAddressActivity"
-            android:label=""
-            android:theme="@style/Theme.AppCompat.Light.Dialog">
-
-        </activity>
+        <activity android:name=".UI.MainActivity" />
+        <activity android:name=".UI.DoctorActivity"></activity>
     </application>
 
 </manifest>
